@@ -1,0 +1,34 @@
+.pin{position:absolute; width:192px; padding:15px 15px 0; font-size:12px; background-color:#fff;/*border:1px #dad6d1 solid\9; */
+box-shadow:0 1px 3px rgba(34,25,25,0.4); -moz-box-shadow:0 1px 2px rgba(34,25,25,0.4); -webkit-box-shadow:0 1px 3px rgba(34,25,25,0.4);}
+.pin .PriceContainer{position:absolute; z-index:2; top:-15px; left:-15px; width:110px; height:110px; overflow:hidden;}
+.pin .price{position:absolute; z-index:2; top:19px; left:-28px; width:125px; height:22px; padding-top:8px; text-align:center; font-size:12px; color:#524d4d; background-color:#f2f0f0; overflow:hidden; -webkit-transform:rotate(-45deg); -moz-transform:rotate(-45deg); -o-transform:rotate(-45deg); -ms-transform:rotate(-45deg);}
+.pin .ImgLink{position:relative;display:block;}
+.pin .ImgLink:hover{text-decoration:none;}
+.pin .ImgLink img{max-width:192px; opacity:1; -webkit-transition:opacity 0.3s; }
+.pin .ImgLink img.lazy{opacity:0; }
+/*.pin .PinImage{background-color:#f2f0f0;display:block; }
+*/
+.pin .PinImageImg{min-height:75px; background-color:#f2f0f0;}
+.pin .video{position:absolute; z-index:1; top:50%; left:50%; width:50px; height:50px; margin:-25px 0 0 -25px;}
+.pin .description{margin:10px 0 5px; overflow:hidden; word-wrap:break-word;}
+/* Pin Activity */
+.pin.activity{background:#fff; box-shadow:0 1px 3px rgba(34,25,25,0.4); -moz-box-shadow:0 1px 2px rgba(34,25,25,0.4); -webkit-box-shadow:0 1px 3px rgba(34,25,25,0.4); position:absolute }
+.pin.activity div.info{background-position:15px 0px; background-repeat:no-repeat; border-bottom:1px solid #ccc; padding:0 15px 10px 35px; margin:0 -15px 15px; }
+.pin.activity .actions{top:auto; }
+.pinBoard.activity{padding:15px !important; width:192px !important; }
+.pinBoard.activity h3, .pinBoard.activity h4{display:none; }
+.pinBoard.activity .board{box-shadow:none; -moz-box-shadow:none; -webkit-box-shadow:none; }
+.pinBoard.activity .board .followBoard{border:none; margin-top:10px; }
+.pinBoard.activity .board .followBoard .Button{display:block; }
+.pinBoard.activity .link img, .pinBoard.activity .link .thumbs .empty{width:47px; height:47px; }
+.user.activity a.ImgLink{width:192px; display:block; margin-bottom:10px; }
+.user.activity .PersonIdentity{display:none; }
+.pin.activity p.stats{margin:0.8em 0; }
+.convo{margin:0 -15px; padding:5px 15px; background:#f4f4f4;}
+.convo:after{clear:both; display:block; height:0; content:; visibility:hidden;}
+.convo p{margin:0 0 0 36px; overflow:hidden; word-wrap:break-word;}
+.convo .ImgLink{float:left; margin-right:6px; width:30px;}
+.convo .ImgLink img{width:30px; height:30px;}
+a.convo{display:block; padding:12px 15px; text-align:center;}
+a.convo:hover{background-color:#f2f0f0;}
+a.convo:active{color:#221919; background-color:#e1dfdf;}

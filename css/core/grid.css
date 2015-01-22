@@ -1,0 +1,57 @@
+/**
+* [Master Stylesheet]
+* @authors : flyer
+* @date    : 2014-07-01
+* project : Design layout
+* version : 1.0.0
+* last change : 2014-07-01
+* @primary use : sites
+*/
+/* layout width  */
+.w990,
+.layout{margin:0 auto;width:990px;min-width:990px;zoom:1;}
+.w-auto  {width:100%;}
+/*
+* html文档内容
+*/
+#header,
+#content,
+#footer,
+.layout{
+zoom:1;
+}
+#header:after,
+#content:after,
+#footer:after,
+.layout:after{
+content:"\0020";/*将空格进行转义*/
+display:block;
+height:0;
+clear:both;
+}
+
+/* bd layout size */
+#main{width:100%;}
+.grid-c,.grid-c2,.grid-c2f,.grid-c2-s1,.grid-c2-s1f,.grid-c3{*zoom:1;}
+.grid-c:after,.grid-c2:after,.grid-c2f:after,.grid-c2-s1:after,.grid-c2-s1f:after,.grid-c3:after{content: ".";display: block;height: 0;clear:both;visibility: hidden;}
+.grid-c #main{float:left;}
+.grid-c2 #main{float:left;}
+.grid-c2 #main .inner{margin-left:200px;}
+.grid-c2 #aside{float:left;width:190px;margin-left:-100%;}
+.grid-c2f #main{float:left;}
+.grid-c2f #main .inner{margin-right:200px;}
+.grid-c2f #aside{float:left;width:190px;margin-left:-190px;}
+.grid-c2-s1 #main{float:left;}
+.grid-c2-s1 #main .inner{margin-left:190px;}
+.grid-c2-s1 #aside{float:left;width:190px;margin-left:-100%;}
+.grid-c2-s1f #main{float:left;}
+.grid-c2-s1f #main .inner{margin-right:240px;}
+.grid-c2-s1f #aside{float:left;width:230px;margin-left:-230px;}
+
+.grid-c3 #main{float:left;}
+.grid-c3 #main .inner{margin-left:160px;margin-right:160px;}
+.grid-c3 #aside{float:left;width:150px;margin-left:-100%;}
+.grid-c3 #extra{float:left;width:150px;margin-left:-150px;}
+
+
+
