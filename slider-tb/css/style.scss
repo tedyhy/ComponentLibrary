@@ -1,0 +1,93 @@
+@charset "UTF-8";
+/**
+ * 
+ * @authors flyer (flyer153@gmail.com)
+ * @date    2015-01-26 10:44:27
+ * @version $Id$
+ */
+ @mixin slide-box($color:rgba(0,0,0,.4)){
+ 	width:825px;
+	height:350px;
+}
+@mixin none{
+	display:none;
+}
+$bg-color:#e3e4e2;
+$left:left;
+$rel:relative;
+$abs:absolute;
+
+html{
+	background:$bg-color;
+}
+.slide_show {
+	@include slide-box;
+	margin: 100px auto 0;
+    position: $rel;
+    overflow: hidden;
+    z-index: 29;
+    a.show-next,
+    a.show-prev {
+	    @include none;
+	    height: 50px;
+	    position: $abs;
+	    top: 150px;
+	    width: 39px;
+	}
+	a.show-next {
+	    right: 0;
+	}
+	a.show-prev {
+	    left: 0;
+	}
+	a s {
+	    background:#666;
+	    cursor: pointer;
+	    display: block;
+	    height: 50px;
+	    opacity: 0.4;
+	    width: 39px;
+	}
+	a:hover s{
+	    opacity: 0.8;
+	}
+}
+.slide_wrap {
+   @include slide-box;
+    ul {
+	    height:350px;
+	    left: 0;
+	    position: $abs;
+	    top: 0;
+	}
+	li {
+	    @include slide-box;
+	    float: $left;
+	}
+	.curr {
+	    position: $rel;
+	}
+	
+}
+.slide_show ol {
+    bottom: 10px;
+    position: $abs;
+    right: 350px;
+    z-index: 99;
+    li {
+	    background-color: #a8a8a8;
+	    border-radius: 10px;
+	    color: white;
+	    cursor: pointer;
+	    float: $left;
+	    height: 20px;
+	    line-height: 20px;
+	    margin-right: 5px;
+	    text-align: center;
+	    width: 20px;
+	}
+	li.curr {
+	    background-color: #ffa827;
+	    cursor: default;
+	}
+}

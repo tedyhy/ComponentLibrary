@@ -14,6 +14,9 @@
 @mixin attribution{
 	border-top: 1px solid #bdbab7;margin-top: 10px;
 }
+@mixin none{
+	display:none;
+}
 @mixin cls{
 	zoom:1;
 	&:after{
@@ -30,6 +33,9 @@ html{
 	.doc-bd{
 		padding-top:100px;
 		position:relative;
+		.none {
+		   @include none;
+		}
 		.cell-pin{
 			position:absolute;
 			width:192px;
