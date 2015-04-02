@@ -21,8 +21,8 @@ html{
 	background:$bg-color;
 }
 .slide_show {
-	@include slide-box;
-	margin: 100px auto 0;
+    @include slide-box;
+    margin: 100px auto 0;
     position: $rel;
     overflow: hidden;
     z-index: 29;

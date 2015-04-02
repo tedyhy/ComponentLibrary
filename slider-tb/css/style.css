@@ -1,2 +1,73 @@
-html{background:#e3e4e2}.slide_show{width:825px;height:350px;margin:100px auto 0;position:relative;overflow:hidden;z-index:29}.slide_show a.show-next,.slide_show a.show-prev{display:none;height:50px;position:absolute;top:150px;width:39px}.slide_show a.show-next{right:0}.slide_show a.show-prev{left:0}.slide_show a s{background:#666;cursor:pointer;display:block;height:50px;opacity:0.4;width:39px}.slide_show a:hover s{opacity:0.8}.slide_wrap{width:825px;height:350px}.slide_wrap ul{height:350px;left:0;position:absolute;top:0}.slide_wrap li{width:825px;height:350px;float:left}.slide_wrap .curr{position:relative}.slide_show ol{bottom:10px;position:absolute;right:350px;z-index:99}.slide_show ol li{background-color:#a8a8a8;border-radius:10px;color:white;cursor:pointer;float:left;height:20px;line-height:20px;margin-right:5px;text-align:center;width:20px}.slide_show ol li.curr{background-color:#ffa827;cursor:default}
+/**
+ * 
+ * @authors flyer (flyer153@gmail.com)
+ * @date    2015-01-26 10:44:27
+ * @version $Id$
+ */
+html {
+  background: #e3e4e2; }
+
+.slide_show {
+  width: 825px;
+  height: 350px;
+  margin: 100px auto 0;
+  position: relative;
+  overflow: hidden;
+  z-index: 29; }
+  .slide_show a.show-next,
+  .slide_show a.show-prev {
+    display: none;
+    height: 50px;
+    position: absolute;
+    top: 150px;
+    width: 39px; }
+  .slide_show a.show-next {
+    right: 0; }
+  .slide_show a.show-prev {
+    left: 0; }
+  .slide_show a s {
+    background: #666;
+    cursor: pointer;
+    display: block;
+    height: 50px;
+    opacity: 0.4;
+    width: 39px; }
+  .slide_show a:hover s {
+    opacity: 0.8; }
+
+.slide_wrap {
+  width: 825px;
+  height: 350px; }
+  .slide_wrap ul {
+    height: 350px;
+    left: 0;
+    position: absolute;
+    top: 0; }
+  .slide_wrap li {
+    width: 825px;
+    height: 350px;
+    float: left; }
+  .slide_wrap .curr {
+    position: relative; }
+
+.slide_show ol {
+  bottom: 10px;
+  position: absolute;
+  right: 350px;
+  z-index: 99; }
+  .slide_show ol li {
+    background-color: #a8a8a8;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    margin-right: 5px;
+    text-align: center;
+    width: 20px; }
+  .slide_show ol li.curr {
+    background-color: #ffa827;
+    cursor: default; }
+
 /*# sourceMappingURL=style.css.map */
