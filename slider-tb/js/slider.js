@@ -6,7 +6,9 @@ var unit = {};
 		};
 
 		function autoSlider() {
-			var li = $("ul>li");
+			var li = $("ul>li"),
+				timer;
+
 			// 如果图片超过一张，显示数字
 			if (li.length > 1) {
 				setTimeout(function() {
@@ -32,9 +34,7 @@ var unit = {};
 				sliderWrapUl = $(".j-slide-Wrap>ul"),
 				sliderWrapLi = $(".j-slide-Wrap>ul>li"),
 				sliderWrapLiLen = sliderWrapLi.length,
-				timer;
-
-			var firstImg = sliderWrapLi.first();
+				firstImg = sliderWrapLi.first();
 			sliderWrapLi.last().clone().prependTo(sliderWrapUl); // 复制最后一个li加在第一个
 			sliderWrapUl.width(sliderWidth * (sliderWrapLiLen + 2) + 100).css("left", "-" + sliderWidth + "px");
 

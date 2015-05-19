@@ -60,6 +60,7 @@ html{
 	    position: $abs;
 	    top: 0;
 	}
+	
 	li {
 	    @include slide-box;
 	    float: $left;
