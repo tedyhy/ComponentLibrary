@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>test</title>
+	<style>
+		*{margin:0;padding:0;}
+		.input-wrap {width: 300px;margin: 100px auto;}
+		.input-wrap input {width: 200px;height: 40px;line-height: 40px;}
+		/*autocomplete*/
+		.ui-autocomplete-wrap {position: absolute;top: -9999px;left: 0;z-index: 10000;display: none;padding: 1px;font:12px/1.125 Arial,Helvetica,sans-serif;color: #333;border: 1px solid #ccc;border-radius: 2px;background-color: #fff;}
+		.ui-autocomplete-wrap li {list-style: none;}
+		.ui-autocomplete-wrap li.note {padding: 5px 10px;white-space: nowrap;}
+		.ui-autocomplete-wrap li a {display: block;padding: 8px 10px;color: #333;cursor: pointer;white-space: nowrap;text-decoration: none;}
+		.ui-autocomplete-wrap li.hover a {background-color: #e6e6e6;text-decoration: none;}
+	</style>
+<body>
+
+<div class="input-wrap">
+	<input type="text" class="j-autocomplete-input" />
+</div>
+<!-- <div class="ui-autocomplete-wrap">
+	<ul>
+	    <li class="note">请选择邮箱类型</li>
+	</ul>
+	<ul>
+		<li><a href="javascript:;">212@sohu.com</a></li>
+		<li><a href="javascript:;">212@baidu.com</a></li>
+	</ul>
+</div> -->
+<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+<script>
+(function(global, $) {
+	var ac = function(opts) {
+		opts = opts || {};
+		this.opts = $.extend(ac.defaults, opts);
+		if (!opts.input || !$(opts.input).length) return;
+		this.init();
+	};
+
+	ac.prototype = {
+		init: function() {
+			var opts = this.opts,
+				$input = this.$input = $(this.opts.input),
+				$wrap = this.$wrap = $(opts.wrap).appendTo('body'),
+				$list = this.$list = $wrap.find('.ui-autocomplete-list');
+			this.bindEvents();
+			this.timer = null;
+		},
+		render: function(v) {
+			var reg = /^[^@\s]+@[^@\s]*$/,
+				emails = [];
+			if (reg.test(v)) {
+				emails = this.renderData(v);
+				if (emails.length) {
+					this.showList();
+					this.renderList(v, emails);
+				} else this.hideList();
+			} else this.hideList();
+		},
+		renderData: function(v) {
+			var emails = this.opts.emails,
+				splits = v.split('@'),
+				domain = splits[1],
+				reg = new RegExp('^' + domain + '\\S*$'),
+				ret = [];
+			ret = $.map(emails, function(email, arr) {
+				if (reg.test(email) && domain !== email) return email;
+			});
+			return ret;
+		},
+		renderList: function(v, emails) {
+			var splits = v.split('@'),
+				html = '';
+			$.each(emails, function(i, email) {
+				html += '<li><a href="javascript:;">' + splits[0] + '@' + email + '</a></li>'
+			});
+			this.$list.get(0).innerHTML = html;
+		},
+		arrowAction: function(kc, e) {
+			var $cur = this.$list.find('li.hover');
+			// up
+			if (kc === 38) {
+				this.arrowUp($cur);
+				// down
+			} else if (kc === 40) {
+				this.arrowDown($cur);
+				// enter
+			} else if (kc === 13) {
+				this.enter($cur);
+			};
+		},
+		position: function() {
+			var $input = this.$input,
+				$wrap = this.$wrap,
+				offset = $input.offset(),
+				input_w = $input.width(),
+				input_h = $input.outerHeight(true);
+			$wrap.css({
+				top: offset.top + input_h + 2,
+				left: offset.left,
+				minWidth: input_w + 'px'
+			});
+		},
+		bindEvents: function() {
+			var self = this;
+			// input
+			this.$input.focus(function() {
+				self.position();
+				self.render(this.value);
+				return false;
+			}).blur(function() {
+				this.value = $.trim(this.value);
+			}).click(function() {
+				return false;
+			}).keyup(function(e) {
+				var kc = e.keyCode;
+				if (kc !== 38 && kc !== 40 && kc !== 13) {
+					self.render(this.value);
+				};
+			}).keydown(function(e) {
+				var kc = e.keyCode;
+				if (kc === 38 || kc === 40 || kc === 13) {
+					self.arrowAction(kc, e);
+				};
+			});
+			// list li
+			this.$list.on('mouseenter', 'li', function() {
+				self.selectThisOne($(this));
+			}).on('mouseleave', 'li', function() {
+				$(this).removeClass('hover');
+			});
+			// list a
+			this.$list.on('click', 'a', function() {
+				self.$input.val(this.innerHTML);
+				self.hideList();
+			});
+			// document
+			$(document).on('click.autoc', function() {
+				self.hideList();
+			});
+			// resize
+			$(window).on('resize.autoc', function() {
+				self.position();
+			});
+		},
+		arrowUp: function($cur) {
+			var $prev;
+			if ($cur.length) $prev = $cur.prev();
+			if (!$prev || !$prev.length) $prev = this.$list.find('li:last');
+			this.selectThisOne($prev);
+			this.setCursorEnd();
+		},
+		arrowDown: function($cur) {
+			var $next;
+			if ($cur.length) $next = $cur.next();
+			if (!$next || !$next.length) $next = this.$list.find('li:first');
+			this.selectThisOne($next);
+		},
+		enter: function($cur) {
+			if (!$cur.length) return;
+			this.$input.val($cur.find('a').html());
+			this.hideList();
+		},
+		setCursorEnd: function() {
+			var input = this.$input.get(0),
+				pos = 0;
+			if (!this.$wrap.is(':visible')) return;
+			if (input.setSelectionRange) { // 标准浏览器
+				pos = input.value.length;
+				clearTimeout(this.timer);
+				this.timer = setTimeout(function() {
+					input.setSelectionRange(pos, pos);
+				}, 0);
+			};
+		},
+		selectThisOne: function($ele) {
+			$ele.addClass('hover').siblings().removeClass('hover');
+		},
+		showList: function() {
+			this.position();
+			this.$wrap.show();
+		},
+		hideList: function() {
+			this.$wrap.hide();
+		}
+	};
+
+	ac.defaults = {
+		emails: ['sina.com', '163.com', 'qq.com', '126.com', 'vip.sina.com', 'sina.cn', 'hotmail.com', 'gmail.com', 'sohu.com', '139.com', 'wo.com.cn', '189.cn', '21cn.com', 'yahoo.cn', 'yahoo.com.cn'],
+		wrap: '<div class="ui-autocomplete-wrap"><ul><li class="note">请选择邮箱类型</li></ul><ul class="ui-autocomplete-list"></ul></div>'
+	};
+
+	global.AutoComplete = ac;
+})(window, window.jQuery);
+
+new AutoComplete({
+	input: '.j-autocomplete-input'
+		// ,wrap: '.ui-autocomplete-wrap'
+});
+</script>
+
+</body>
+</html>

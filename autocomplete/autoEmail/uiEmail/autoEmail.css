@@ -1,0 +1,7 @@
+/*autoEmail*/
+.ui-autocomplete-wrap{position:absolute;top:-9999px;left:0;z-index:998;display:none;padding:1px;font:14px/1.125 Arial,Helvetica,sans-serif;color:#646464;border:1px solid #ccc;border-radius:2px;background-color:#fff;}
+.ui-autocomplete-wrap ul{margin:0;padding:0;}
+.ui-autocomplete-wrap li{text-align:left;list-style-type:none;}
+.ui-autocomplete-wrap li.note{padding:10px 0 5px 10px;color:#323232;white-space:nowrap;}
+.ui-autocomplete-wrap li a{display:block;padding:8px 10px;color:#646464;cursor:pointer;white-space:nowrap;text-decoration:none;}
+.ui-autocomplete-wrap li.hover a{background-color:#f6f6f6;text-decoration:none;}
